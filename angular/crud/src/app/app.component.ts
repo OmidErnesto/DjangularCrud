@@ -41,7 +41,7 @@ export class AppComponent {
   updateMovie = () => {
     this.api.updateMovie(this.selectedMovie).subscribe(
       data => {
-        this.selectedMovie = data;
+        this.getMovies();
       },
       error => {
         console.log(error);
@@ -53,6 +53,17 @@ export class AppComponent {
     this.api.createMovie(this.selectedMovie).subscribe(
       data => {
         this.movies.push(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  deleteMovie = () => {
+    this.api.deleteMovie(this.selectedMovie.id).subscribe(
+      data => {
+        this.getMovies();
       },
       error => {
         console.log(error);
